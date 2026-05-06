@@ -34,12 +34,12 @@ export const projects: Project[] = [
 		description:
 			'Construită direct deasupra unei cascade de nouă metri pe Bear Run, terasele cantileverizate din beton imită straturile naturale de piatră ale sitului, creând iluzia că locuința a crescut organic din peisaj. Wright a proiectat planurile în trei ore, conform legendei, chiar înainte ca patronul Kaufmann să sosească din Pittsburgh pentru a le vizualiza. Structura utilizeaza tehnici de inginerie radicale pentru epoca sa: terase suspendate fără stâlpi de sprijin vizibili, care par să plutească deasupra apei. La interior, podeaua de piatră nelustruită coboară direct spre stânca naturală, iar ferestrele cu ramă de metal subțire elimină granița dintre interior și pădurea înconjurătoare.',
 		images: {
-			hero: WP('Fallingwater_2006.jpg'),
-			exterior: WP('Fallingwater_2006.jpg'),
-			exterior2: WP('Fallingwater_view_from_below.jpg'),
-			interior: WP('Fallingwater_interior.jpg'),
-			interior2: WP('Fallingwater_int.jpg'),
-			withWright: WP('FLW_Fallingwater.jpg')
+			hero: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Fallingwater3.jpg',
+			exterior: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,q_75,w_1200/v1/crm/laurel/2022-10-9-Fallingwater-006_355F2BC4-0DBA-A106-B4D721F2F4A86A82-355f0836b845446_35603ee9-aa38-bb40-50a65312f975f444.jpg',
+			exterior2: 'https://pabucketlist.com/wp-content/uploads/2021/04/Fallingwater-Springtime-Fayette-County-PA-public-domain-image.jpg',
+			interior: 'https://images.adsttc.com/media/images/5037/ddec/28ba/0d59/9b00/0093/newsletter/stringio.jpg?1414033832',
+			interior2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRlGFF4162955IXn-z8QI5dR8gu62B48Bx2w&s',
+			withWright: undefined,
 		}
 	},
 	{

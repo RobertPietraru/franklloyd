@@ -44,15 +44,6 @@
 			event: 'Moare pe 9 aprilie la Phoenix, Arizona. Muzeul Guggenheim se deschide în octombrie.'
 		}
 	];
-	const WP = (file: string) =>
-		`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}`;
-	// const images = {
-	// 	portrait: WP('Frank_Lloyd_Wright_portrait.jpg'),
-	// 	broadacre: WP('Frank_Lloyd_Wright_and_Broadacre_City_model.jpg'),
-	// 	guggenheim: WP('Frank_Lloyd_Wright_at_Guggenheim_Museum.jpg'),
-	// 	taliesinWest: WP('Frank_Lloyd_Wright_at_Taliesin_West.jpg'),
-	// 	taliesin: WP('Frank_Lloyd_Wright_at_Taliesin.jpg')
-	// }
 	const images = {
 		portrait: 'https://media.architecturaldigest.com/photos/62ed45aac086844f28d1a02f/16:9/w_2560%2Cc_limit/GettyImages-517725864.jpg',
 		broadacre: 'https://franklloydwright.org/wp-content/uploads/2018/09/Figure1_broadacre.jpg',

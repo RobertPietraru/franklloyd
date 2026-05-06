@@ -57,6 +57,10 @@
 				<div class="project-images">
 					<div class="project-img-main">
 						<ImageTilt src={project.images.exterior} alt={`${project.title} — exterior`} aspectRatio="3/2" intensity={9} overlay />
+
+						<div class="project-img-label">
+							<span class="label">exterior</span>
+						</div>
 					</div>
 					<div class="project-img-secondary">
 						<ImageTilt src={project.images.interior} alt={`${project.title} — interior`} aspectRatio="3/2" intensity={9} overlay />
