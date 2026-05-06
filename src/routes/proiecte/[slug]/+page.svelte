@@ -180,9 +180,6 @@
 					<h4>{prev.title}</h4>
 				</div>
 			</div>
-			<div class="proj-nav-thumb">
-				<img src={prev.images.hero} alt={prev.title} loading="lazy" />
-			</div>
 		</a>
 	{:else}
 		<div></div>
@@ -199,9 +196,6 @@
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
 					<path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
-			</div>
-			<div class="proj-nav-thumb">
-				<img src={next.images.hero} alt={next.title} loading="lazy" />
 			</div>
 		</a>
 	{:else}
@@ -476,12 +470,23 @@
 		position: relative;
 		padding: 56px var(--pad-x);
 		border-top: 1px solid var(--border);
-		overflow: hidden;
-		transition: background-color 0.3s ease;
 		display: block;
+		overflow: hidden;
 	}
 
-	.proj-nav-item:hover { background-color: var(--bg-alt); opacity: 1; }
+	/* Gold line that draws in from the left on hover */
+	.proj-nav-item::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		left: 0;
+		height: 1px;
+		width: 0;
+		background-color: var(--gold);
+		transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.proj-nav-item:hover::before { width: 100%; }
 
 	.proj-nav-prev { border-right: 1px solid var(--border); }
 
@@ -511,27 +516,21 @@
 
 	.proj-nav-content h4 {
 		font-size: clamp(18px, 2vw, 26px);
+		transition: color 0.3s ease;
 	}
 
-	.proj-nav-thumb {
-		position: absolute;
-		inset: 0;
-		opacity: 0;
-		transition: opacity 0.4s ease;
-		z-index: -1;
+	.proj-nav-item:hover h4 { color: var(--gold); }
+
+	/* Arrow nudges outward on hover */
+	.proj-nav-content svg {
+		transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+		flex-shrink: 0;
 	}
 
-	.proj-nav-thumb img {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-		filter: brightness(0.25) saturate(0.4);
-	}
+	.proj-nav-prev:hover .proj-nav-content svg { transform: translateX(-4px); }
+	.proj-nav-next:hover .proj-nav-content svg { transform: translateX(4px); }
 
-	.proj-nav-item:hover .proj-nav-thumb { opacity: 1; }
-	.proj-nav-item:hover h4 { color: var(--dark-text); }
-	.proj-nav-item:hover .label { color: rgba(245,242,237,0.4); }
-	.proj-nav-item:hover .proj-nav-year { color: var(--gold-light); }
+	.proj-nav-thumb { display: none; }
 
 	@media (max-width: 900px) {
 		.proj-overview-inner { grid-template-columns: 1fr; gap: 48px; }

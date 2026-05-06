@@ -13,54 +13,63 @@
 
 	let containerEl: HTMLDivElement;
 	let imageEl: HTMLDivElement;
-	let animating = false;
-	let raf: number;
 
-	let currentX = 0;
-	let currentY = 0;
-	let targetX = 0;
-	let targetY = 0;
+	let raf: number;
+	let running = false;
+	let hovering = false;
+
+	let cx = 0, cy = 0, tx = 0, ty = 0;
 
 	function lerp(a: number, b: number, t: number) {
 		return a + (b - a) * t;
 	}
 
-	function animate() {
-		currentX = lerp(currentX, targetX, 0.08);
-		currentY = lerp(currentY, targetY, 0.08);
+	function loop() {
+		cx = lerp(cx, tx, 0.09);
+		cy = lerp(cy, ty, 0.09);
 
 		if (imageEl) {
-			imageEl.style.transform = `perspective(900px) rotateY(${currentX}deg) rotateX(${-currentY}deg) scale(1.04)`;
+			// When mouse has left and values have fully converged to zero, stop and clean up
+			if (!hovering && Math.abs(cx) < 0.004 && Math.abs(cy) < 0.004) {
+				cx = 0;
+				cy = 0;
+				imageEl.style.transform = '';
+				running = false;
+				return;
+			}
+			imageEl.style.transform = `perspective(900px) rotateY(${cx}deg) rotateX(${-cy}deg) scale(1.04)`;
 		}
 
-		const moving = Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01;
-		if (moving || animating) {
-			raf = requestAnimationFrame(animate);
+		raf = requestAnimationFrame(loop);
+	}
+
+	function startLoop() {
+		if (!running) {
+			running = true;
+			raf = requestAnimationFrame(loop);
 		}
 	}
 
 	function onMouseMove(e: MouseEvent) {
 		const rect = containerEl.getBoundingClientRect();
-		const nx = (e.clientX - rect.left) / rect.width - 0.5;
-		const ny = (e.clientY - rect.top) / rect.height - 0.5;
-		targetX = nx * intensity;
-		targetY = ny * intensity;
-
-		if (!animating) {
-			animating = true;
-			raf = requestAnimationFrame(animate);
-		}
+		tx = ((e.clientX - rect.left) / rect.width - 0.5) * intensity;
+		ty = ((e.clientY - rect.top) / rect.height - 0.5) * intensity;
+		hovering = true;
+		startLoop();
 	}
 
 	function onMouseLeave() {
-		targetX = 0;
-		targetY = 0;
-		animating = false;
+		tx = 0;
+		ty = 0;
+		hovering = false;
+		// Keep loop running so it can lerp back to zero and clean up
+		startLoop();
 	}
 
 	onMount(() => {
 		return () => {
-			if (raf) cancelAnimationFrame(raf);
+			cancelAnimationFrame(raf);
+			running = false;
 		};
 	});
 </script>
@@ -86,14 +95,12 @@
 	.tilt-container {
 		position: relative;
 		overflow: hidden;
-		cursor: none;
 		will-change: transform;
 	}
 
 	.tilt-inner {
 		position: absolute;
 		inset: -4%;
-		transition: transform 0.05s linear;
 		will-change: transform;
 	}
 

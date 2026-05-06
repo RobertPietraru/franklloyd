@@ -7,7 +7,13 @@
 
 	const featured = projects.slice(0, 3);
 
-	const WP = (file: string) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}`;
+const images ={
+	frank: 'https://cdn.shopify.com/s/files/1/1070/4650/files/1.jpeg?13958296702011856707',
+	// frank: 'https://www.thoughtco.com/thmb/VixCcKiRQG4tULx-Aj-yvugVs2s=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/FLWright-pose1942-2785804-crop-590960b13df78c92832dd1fa.jpg',
+	fallingwater: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Fallingwater3.jpg',
+	guggenheim: 'https://www.guggenheim.org/wp-content/uploads/2016/04/architecture-srgm-exterior-flavin-16-9-ratio-web.jpg',
+	taliesin: 'https://franklloydwright.org/wp-content/uploads/2025/07/blog-header.jpg'
+}
 
 	onMount(() => {
 		setTimeout(() => (heroVisible = true), 120);
@@ -32,7 +38,7 @@
 <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
 <section class="hero" class:visible={heroVisible}>
 	<div class="hero-bg">
-		<img src={WP('Fallingwater_2006.jpg')} alt="Fallingwater" />
+		<img src={images.frank} alt="Fallingwater" />
 		<div class="hero-bg-overlay"></div>
 	</div>
 
@@ -172,7 +178,7 @@
 		</blockquote>
 	</div>
 	<div class="philosophy-bg-image">
-		<img src={WP('Taliesin_West_Panorama.jpg')} alt="Taliesin West" />
+		<img src={images.taliesin} alt="Taliesin West" />
 	</div>
 </section>
 

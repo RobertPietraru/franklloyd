@@ -1,7 +1,53 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import ImageTilt from '$lib/components/ImageTilt.svelte';
 	import { projects } from '$lib/data/projects';
+
+	let swapped = $state<Set<string>>(new Set());
+
+	function toggle(slug: string, e: MouseEvent) {
+		e.preventDefault();
+		e.stopPropagation();
+		const next = new Set(swapped);
+		if (next.has(slug)) next.delete(slug);
+		else next.add(slug);
+		swapped = next;
+	}
+
+	function tilt(node: HTMLElement, intensity = 9) {
+		let raf: number;
+		let cx = 0, cy = 0, tx = 0, ty = 0;
+		let active = false;
+
+		function lerp(a: number, b: number, t: number) { return a + (b - a) * t; }
+
+		function frame() {
+			cx = lerp(cx, tx, 0.07);
+			cy = lerp(cy, ty, 0.07);
+			node.style.transform = `perspective(900px) rotateY(${cx}deg) rotateX(${-cy}deg)`;
+			if (Math.abs(tx - cx) > 0.005 || Math.abs(ty - cy) > 0.005 || active) {
+				raf = requestAnimationFrame(frame);
+			} else {
+				node.style.transform = '';
+			}
+		}
+
+		function onMove(e: MouseEvent) {
+			const r = node.getBoundingClientRect();
+			tx = ((e.clientX - r.left) / r.width - 0.5) * intensity;
+			ty = ((e.clientY - r.top) / r.height - 0.5) * intensity;
+			if (!active) { active = true; raf = requestAnimationFrame(frame); }
+		}
+
+		function onLeave() { tx = 0; ty = 0; active = false; }
+
+		node.addEventListener('mousemove', onMove);
+		node.addEventListener('mouseleave', onLeave);
+		return { destroy() {
+			node.removeEventListener('mousemove', onMove);
+			node.removeEventListener('mouseleave', onLeave);
+			cancelAnimationFrame(raf);
+		}};
+	}
 
 	onMount(() => {
 		const observer = new IntersectionObserver(
@@ -54,21 +100,35 @@
 					<span class="label">{String(i + 1).padStart(2, '0')}</span>
 				</div>
 
-				<div class="project-images">
-					<div class="project-img-main">
-						<ImageTilt src={project.images.exterior} alt={`${project.title} — exterior`} aspectRatio="3/2" intensity={9} overlay />
-
-						<div class="project-img-label">
-							<span class="label">exterior</span>
-						</div>
+				<div class="project-images" use:tilt>
+					<!-- exterior layer -->
+					<div class="img-layer" class:active={!swapped.has(project.slug)}>
+						<img src={project.images.exterior} alt="{project.title} — exterior" loading="lazy" />
+						<div class="img-overlay"></div>
 					</div>
-					<div class="project-img-secondary">
-						<ImageTilt src={project.images.interior} alt={`${project.title} — interior`} aspectRatio="3/2" intensity={9} overlay />
-						<div class="project-img-label">
-							<span class="label">exterior</span>
-							<span class="label">interior</span>
-						</div>
+					<!-- interior layer -->
+					<div class="img-layer" class:active={swapped.has(project.slug)}>
+						<img src={project.images.interior} alt="{project.title} — interior" loading="lazy" />
+						<div class="img-overlay"></div>
 					</div>
+					<!-- thumbnail toggle -->
+					<button
+						class="img-thumb"
+						onclick={(e) => toggle(project.slug, e)}
+						aria-label="comută între exterior și interior"
+					>
+						<img
+							src={swapped.has(project.slug) ? project.images.exterior : project.images.interior}
+							alt="preview"
+						/>
+						<span class="img-thumb-label label">
+							{swapped.has(project.slug) ? 'exterior' : 'interior'}
+						</span>
+					</button>
+					<!-- active view label -->
+					<span class="img-active-label label">
+						{swapped.has(project.slug) ? 'interior' : 'exterior'}
+					</span>
 				</div>
 
 				<div class="project-info">
@@ -175,10 +235,7 @@
 		grid-template-columns: 48px 1fr 1fr;
 		gap: 56px;
 		align-items: start;
-		transition: opacity 0.25s ease;
 	}
-
-	.project-row-link:hover { opacity: 1; }
 
 	.project-row-num {
 		padding-top: 8px;
@@ -186,32 +243,81 @@
 
 	/* Images */
 	.project-images {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-	}
-
-	.project-img-main {
-		flex: 1;
-		overflow: hidden;
-	}
-
-	.project-img-secondary {
 		position: relative;
+		aspect-ratio: 3 / 2;
+		overflow: hidden;
+		will-change: transform;
 	}
 
-	.project-img-label {
+	.img-layer {
 		position: absolute;
 		inset: 0;
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
-		padding: 12px 16px;
+		opacity: 0;
+		transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.img-layer.active {
+		opacity: 1;
+	}
+
+	.img-layer img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.img-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
 		pointer-events: none;
 	}
 
-	.project-img-label .label {
-		color: rgba(245, 242, 237, 0.55);
+	/* Thumbnail */
+	.img-thumb {
+		position: absolute;
+		bottom: 14px;
+		right: 14px;
+		width: 28%;
+		aspect-ratio: 3 / 2;
+		overflow: hidden;
+		border: 1px solid rgba(245, 242, 237, 0.28);
+		cursor: pointer;
+		background: none;
+		padding: 0;
+		z-index: 10;
+		transition: transform 0.25s ease, border-color 0.25s ease;
+	}
+
+	.img-thumb:hover {
+		transform: scale(1.05);
+		border-color: rgba(168, 120, 64, 0.7);
+	}
+
+	.img-thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.img-thumb-label {
+		position: absolute;
+		bottom: 6px;
+		left: 8px;
+		color: rgba(245, 242, 237, 0.7);
+		font-size: 9px;
+		pointer-events: none;
+	}
+
+	.img-active-label {
+		position: absolute;
+		bottom: 14px;
+		left: 16px;
+		color: rgba(245, 242, 237, 0.5);
+		pointer-events: none;
+		z-index: 2;
 	}
 
 	/* Info */
