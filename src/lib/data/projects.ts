@@ -1,3 +1,4 @@
+const placeholder = '/placeholder.png';
 export interface Project {
 	slug: string;
 	title: string;
@@ -18,7 +19,6 @@ export interface Project {
 	};
 }
 
-const WP = (file: string) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}`;
 
 export const projects: Project[] = [
 	{
@@ -97,12 +97,11 @@ export const projects: Project[] = [
 		description:
 			'Liniile orizontale prelungite, streşinile adânci și cărămida romană îngustă reflectă orizontul plat al câmpiei Midwest-ului american. Wright a descompus casa tradițională victoriană — o sumă de cutii închise — într-un flux continuu de spații care se deschid unele spre altele în jurul unui șemineu central masiv de cărămidă. Ferestrele în bandă cu sticlă artizanală în culori de chihlimbar și verde filtrează lumina naturală fără a oferi priviri directe în interior, asigurând intimitate fără închidere. Gardul de cărămidă integrat în arhitectura casei — o premieră — a generat conceptul de carport și a influențat proiectarea suburbanistică americană pentru decenii.',
 		images: {
-			hero: WP('Robie_house.jpg'),
-			exterior: WP('Robie_house.jpg'),
-			exterior2: WP('Frederick_C._Robie_House_2013.jpg'),
-			interior: WP('Robie_House_Interior.jpg'),
-			interior2: WP('Robie_house_living_room.jpg'),
-			withWright: WP('Frank_Lloyd_Wright_Robie_House.jpg')
+			hero: placeholder,
+			exterior: placeholder,
+			exterior2: placeholder,
+			interior: placeholder,
+			interior2: placeholder,
 		}
 	},
 	{
@@ -118,12 +117,12 @@ export const projects: Project[] = [
 		description:
 			'Construit cu un buget modest de 45.000 de dolari, Unity Temple demonstrează că simplitatea și spiritualitatea pot fi exprimate cu mijloace materiale modeste, atâta timp cât geometria și lumina sunt orchestrate cu geniu. Exteriorul masiv, aproape fortăreț, pregătește intrarea dramatiică într-un interior inundat de o lumină „zenitală" caldă care coboară prin patruzeci și patru de luminatoare din sticlă de chihlimbar. Wright a creat două volume distincte unite printr-un foyer comun: sala de serviciu religios cu capacitate de patru sute de persoane și casa unității pentru activitățile sociale. Tratamentul ornamental al betonului — texturat cu bord de lemn pentru a rupe monotonia — transformă un material industrial în ceva aproape nobil.',
 		images: {
-			hero: WP('Unity_Temple_Oak_Park.jpg'),
-			exterior: WP('Unity_Temple_Oak_Park.jpg'),
-			exterior2: WP('Unity_Temple_exterior.jpg'),
-			interior: WP('Unity_Temple_interior.jpg'),
-			interior2: WP('Unity_Temple_interior_01.jpg'),
-			withWright: WP('Frank_Lloyd_Wright_Unity_Temple.jpg')
+			hero: placeholder,
+			exterior: placeholder,
+			exterior2: placeholder,
+			interior: placeholder,
+			interior2: placeholder,
+			withWright: placeholder,
 		}
 	},
 	{
@@ -139,11 +138,11 @@ export const projects: Project[] = [
 		description:
 			'Proiectată pentru moștenitoarea petrolieră și mecenă teatrală Aline Barnsdall pe dealul Olive Hill, casa utilizează betonul turnat decorat cu motive abstracte ale florii de nalbă — floarea preferată a clientei. Motivul floral apare în frizele exterioare, pervazele ferestrelor, mobila integrată și chiar în structura șemineelor, creând un limbaj decorativ coerent și unic. Planul deschis al casei, cu galeria interioară ce oferă vederi spre curtea centrală cu bazin reflectorizant, prefigurează stilul de viață californian modern. Wright a numit proiectul o „Romanza californiană" — o romanță cu climatul, vegetația și libertatea spațiuluii de vest american.',
 		images: {
-			hero: WP('Hollyhock_house.jpg'),
-			exterior: WP('Hollyhock_house.jpg'),
-			exterior2: WP('Hollyhock_House_exterior.jpg'),
-			interior: WP('Hollyhock_House_interior.jpg'),
-			withWright: WP('Frank_Lloyd_Wright_Hollyhock_House.jpg')
+			hero: placeholder,
+			exterior: placeholder,
+			exterior2: placeholder,
+			interior: placeholder,
+			withWright: placeholder,
 		}
 	},
 	{
@@ -159,11 +158,11 @@ export const projects: Project[] = [
 		description:
 			'Herbert Jacobs, un jurnalist cu un buget de 5.500 de dolari, i-a scris lui Wright că doreste să construiască o casă adevărată, nu o cutie de chibrituri. Răspunsul lui Wright a generat unul dintre cele mai influente concepte din istoria arhitecturii rezidențiale. Casa Usonian elimina pivnița, podul și garderoba separată, înlocuindu-le cu un plan în formă de L, spații multifuncționale și mobilier integrat. Încălzirea prin pardoseală radiantă — o premieră americană — distribuia căldura uniform, fără radiatoare sau conducte vizibile. Carportul, înlocuitor economic al garajului tradițional, a apărut pentru prima dată în arhitectura americană în această casă. Principiile Usonian au influențat direct dezvoltarea suburbanistică americană de după al Doilea Război Mondial.',
 		images: {
-			hero: WP('Herbert_Jacobs_House_I.jpg'),
-			exterior: WP('Herbert_Jacobs_House_I.jpg'),
-			exterior2: WP('Jacobs_house_exterior.jpg'),
-			interior: WP('Herbert_Jacobs_House_interior.jpg'),
-			withWright: WP('Frank_Lloyd_Wright_Usonian.jpg')
+			hero: placeholder,
+			exterior: placeholder,
+			exterior2: placeholder,
+			interior: placeholder,
+			withWright: placeholder,
 		}
 	},
 	{
@@ -179,11 +178,11 @@ export const projects: Project[] = [
 		description:
 			'Taliesin — cuvânt galez pentru „sprânceana strălucitoare" — a fost mai mult decât o casă. A fost un manifest arhitectural tridimensional: un loc unde Wright și-a trăit filozofia de-a lungul a aproape cincizeci de ani. Construit pe dealul de deasupra satelor sale natale, complexul cuprinde rezidența, atelierele, grajdurile și câmpurile agricole într-un ansamblu organic care a crescut și s-a transformat constant. Wright a reconstruit Taliesin de două ori după incendii devastatoare — în 1914 și 1925 — refuzând să abandoneze locul. Piatra de calcar galben-ocru extrasă local, lemnul de stejar și tencuiala colorată în tonurile pețisajului contribuie la sentimentul că edificiul a crescut din pâmântul însuși. Taliesin a fost și prima școală de arhitectură Wright, unde studenți din întreaga lume veneau să trăiască și să înveațe în același ritm cu maestrul.',
 		images: {
-			hero: WP('Taliesin_estate.jpg'),
-			exterior: WP('Taliesin_estate.jpg'),
-			exterior2: WP('Taliesin_(Wisconsin).jpg'),
-			interior: WP('Taliesin_interior.jpg'),
-			withWright: WP('Frank_Lloyd_Wright_at_Taliesin.jpg')
+			hero: placeholder,
+			exterior: placeholder,
+			exterior2: placeholder,
+			interior: placeholder,
+			withWright: placeholder,
 		}
 	}
 ];
