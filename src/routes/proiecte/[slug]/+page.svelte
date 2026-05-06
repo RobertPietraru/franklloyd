@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import ImageTilt from '$lib/components/ImageTilt.svelte';
-	import type { PageData } from './$types';
 
-	let { data }: { data: PageData } = $props();
+	let { data } = $props();
 	let { project, prev, next } = $derived(data);
 
 	let heroVisible = $state(false);
