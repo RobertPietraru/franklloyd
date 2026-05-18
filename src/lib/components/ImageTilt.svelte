@@ -77,6 +77,7 @@
 <div
 	class="tilt-container"
 	style="aspect-ratio: {aspectRatio}"
+	data-intensity={intensity}
 	bind:this={containerEl}
 	onmousemove={onMouseMove}
 	onmouseleave={onMouseLeave}

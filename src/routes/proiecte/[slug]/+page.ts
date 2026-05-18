@@ -1,5 +1,7 @@
-import { getProject, getAdjacentProjects } from '$lib/data/projects';
+import { getProject, getAdjacentProjects, projects } from '$lib/data/projects';
 import { error } from '@sveltejs/kit';
+
+export const entries = () => projects.map((p) => ({ slug: p.slug }));
 
 export const load = ({ params }) => {
 	const project = getProject(params.slug);

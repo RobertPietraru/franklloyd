@@ -6,7 +6,109 @@
 		<meta name="text-scale" content="scale" />
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body>
 		<div style="display: contents">%sveltekit.body%</div>
+		<script>
+			// Navbar scroll background
+			(function () {
+				var nav = document.querySelector('nav');
+				if (nav) window.addEventListener('scroll', function () {
+					nav.classList.toggle('scrolled', window.scrollY > 40);
+				}, { passive: true });
+			})();
+
+			// Hero entrance animation
+			setTimeout(function () {
+				var hero = document.querySelector('.hero, .proj-hero');
+				if (hero) hero.classList.add('visible');
+			}, 100);
+
+			// Scroll reveal via IntersectionObserver
+			(function () {
+				var observer = new IntersectionObserver(function (entries) {
+					entries.forEach(function (e) {
+						if (e.isIntersecting) e.target.classList.add('visible');
+					});
+				}, { threshold: 0.1 });
+				document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+			})();
+
+			// ImageTilt hover effect (.tilt-container — used on home and project detail pages)
+			document.querySelectorAll('.tilt-container').forEach(function (container) {
+				var inner = container.querySelector('.tilt-inner');
+				if (!inner) return;
+				var intensity = parseFloat(container.dataset.intensity) || 10;
+				var cx = 0, cy = 0, tx = 0, ty = 0, running = false, hovering = false;
+				function lerp(a, b, t) { return a + (b - a) * t; }
+				function loop() {
+					cx = lerp(cx, tx, 0.09); cy = lerp(cy, ty, 0.09);
+					if (!hovering && Math.abs(cx) < 0.004 && Math.abs(cy) < 0.004) {
+						cx = cy = 0; inner.style.transform = ''; running = false; return;
+					}
+					inner.style.transform = 'perspective(900px) rotateY(' + cx + 'deg) rotateX(' + (-cy) + 'deg) scale(1.04)';
+					requestAnimationFrame(loop);
+				}
+				container.addEventListener('mousemove', function (e) {
+					var r = container.getBoundingClientRect();
+					tx = ((e.clientX - r.left) / r.width - 0.5) * intensity;
+					ty = ((e.clientY - r.top) / r.height - 0.5) * intensity;
+					hovering = true;
+					if (!running) { running = true; requestAnimationFrame(loop); }
+				});
+				container.addEventListener('mouseleave', function () {
+					tx = ty = 0; hovering = false;
+					if (!running) { running = true; requestAnimationFrame(loop); }
+				});
+			});
+
+			// Project images tilt (.project-images — used on proiecte list page)
+			document.querySelectorAll('.project-images').forEach(function (node) {
+				var cx = 0, cy = 0, tx = 0, ty = 0, active = false, raf;
+				function lerp(a, b, t) { return a + (b - a) * t; }
+				function frame() {
+					cx = lerp(cx, tx, 0.07); cy = lerp(cy, ty, 0.07);
+					node.style.transform = 'perspective(900px) rotateY(' + cx + 'deg) rotateX(' + (-cy) + 'deg)';
+					if (Math.abs(tx - cx) > 0.005 || Math.abs(ty - cy) > 0.005 || active) {
+						raf = requestAnimationFrame(frame);
+					} else {
+						node.style.transform = '';
+					}
+				}
+				node.addEventListener('mousemove', function (e) {
+					var r = node.getBoundingClientRect();
+					tx = ((e.clientX - r.left) / r.width - 0.5) * 9;
+					ty = ((e.clientY - r.top) / r.height - 0.5) * 9;
+					if (!active) { active = true; raf = requestAnimationFrame(frame); }
+				});
+				node.addEventListener('mouseleave', function () { tx = 0; ty = 0; active = false; });
+			});
+
+			// Image toggle button (.img-thumb — switches exterior/interior on proiecte list page)
+			document.querySelectorAll('.img-thumb').forEach(function (btn) {
+				btn.addEventListener('click', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					var wrap = btn.closest('.project-images');
+					if (!wrap) return;
+					var layers = wrap.querySelectorAll('.img-layer');
+					if (layers.length < 2) return;
+					var isSwapped = layers[1].classList.contains('active');
+					layers[0].classList.toggle('active', isSwapped);
+					layers[1].classList.toggle('active', !isSwapped);
+					var thumbImg = btn.querySelector('img');
+					var thumbLabel = btn.querySelector('.img-thumb-label');
+					var activeLabel = wrap.querySelector('.img-active-label');
+					if (!isSwapped) {
+						if (thumbImg) thumbImg.src = layers[0].querySelector('img').src;
+						if (thumbLabel) thumbLabel.textContent = 'exterior';
+						if (activeLabel) activeLabel.textContent = 'interior';
+					} else {
+						if (thumbImg) thumbImg.src = layers[1].querySelector('img').src;
+						if (thumbLabel) thumbLabel.textContent = 'interior';
+						if (activeLabel) activeLabel.textContent = 'exterior';
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
