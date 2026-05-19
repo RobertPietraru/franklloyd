@@ -101,7 +101,7 @@ export const projects: Project[] = [
 			hero: '/buildings/robiehouse/hero.jpg',
 			exterior: '/buildings/robiehouse/exterior_1.jpg',
 			exterior2: '/buildings/robiehouse/exterior_2.jpg',
-			interior: '/buildings/robiehouse/interior_1.jpg',
+			interior: '/buildings/robiehouse/interior_1.webp',
 			interior2: '/buildings/robiehouse/interior_2.png',
 		}
 	},
@@ -118,12 +118,11 @@ export const projects: Project[] = [
 		description:
 			'Construit cu un buget modest de 45.000 de dolari, Unity Temple demonstrează că simplitatea și spiritualitatea pot fi exprimate cu mijloace materiale modeste, atâta timp cât geometria și lumina sunt orchestrate cu geniu. Exteriorul masiv, aproape fortăreț, pregătește intrarea dramatiică într-un interior inundat de o lumină „zenitală" caldă care coboară prin patruzeci și patru de luminatoare din sticlă de chihlimbar. Wright a creat două volume distincte unite printr-un foyer comun: sala de serviciu religios cu capacitate de patru sute de persoane și casa unității pentru activitățile sociale. Tratamentul ornamental al betonului — texturat cu bord de lemn pentru a rupe monotonia — transformă un material industrial în ceva aproape nobil.',
 		images: {
-			hero: placeholder,
-			exterior: placeholder,
-			exterior2: placeholder,
-			interior: placeholder,
-			interior2: placeholder,
-			withWright: placeholder,
+			hero: '/buildings/unitytemple/hero.png',
+			exterior: '/buildings/unitytemple/exterior_1.png',
+			exterior2: '/buildings/unitytemple/exterior_2.png',
+			interior: '/buildings/unitytemple/interior_1.png',
+			interior2: '/buildings/unitytemple/interior_2.png',
 		}
 	},
 	{

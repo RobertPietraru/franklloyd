@@ -20,17 +20,25 @@ function hrefToFile(href) {
 }
 
 const files = findHtmlFiles(buildDir);
-let count = 0;
+let hrefCount = 0;
+let srcCount = 0;
 
 for (const file of files) {
 	const dir = dirname(file);
-	const content = readFileSync(file, 'utf8').replace(/href="(\/[^"#?]*)"/g, (_, href) => {
-		let rel = relative(dir, join(buildDir, hrefToFile(href)));
-		if (!rel.startsWith('.')) rel = './' + rel;
-		count++;
-		return `href="${rel}"`;
-	});
+	const content = readFileSync(file, 'utf8')
+		.replace(/href="(\/[^"#?]*)"/g, (_, href) => {
+			let rel = relative(dir, join(buildDir, hrefToFile(href)));
+			if (!rel.startsWith('.')) rel = './' + rel;
+			hrefCount++;
+			return `href="${rel}"`;
+		})
+		.replace(/src="(\/(?!\/)[^"]*)"/g, (_, src) => {
+			let rel = relative(dir, join(buildDir, src.replace(/^\//, '')));
+			if (!rel.startsWith('.')) rel = './' + rel;
+			srcCount++;
+			return `src="${rel}"`;
+		});
 	writeFileSync(file, content);
 }
 
-console.log(`relativized ${count} links in ${files.length} files`);
+console.log(`relativized ${hrefCount} href + ${srcCount} src attributes in ${files.length} files`);
