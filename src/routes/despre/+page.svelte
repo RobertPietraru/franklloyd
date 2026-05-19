@@ -45,13 +45,19 @@
 		}
 	];
 	const images = {
-		portrait: 'https://media.architecturaldigest.com/photos/62ed45aac086844f28d1a02f/16:9/w_2560%2Cc_limit/GettyImages-517725864.jpg',
-		broadacre: 'https://franklloydwright.org/wp-content/uploads/2018/09/Figure1_broadacre.jpg',
-		guggenheim:
-			'https://media.newyorker.com/photos/5b733c3f4545774bcd21b838/master/w_2560%2Cc_limit/591205_ra552.jpg',
-		taliesinWest: 'https://franklloydwright.org/wp-content/uploads/2025/01/TW2023HIGH_Andrew-Pielage-45-tours-header1.jpg',
-		taliesin:
-			'https://franklloydwright.org/wp-content/uploads/2025/07/blog-header.jpg'
+		// portrait: 'https://media.architecturaldigest.com/photos/62ed45aac086844f28d1a02f/16:9/w_2560%2Cc_limit/GettyImages-517725864.jpg',
+		// broadacre: 'https://franklloydwright.org/wp-content/uploads/2018/09/Figure1_broadacre.jpg',
+		// guggenheim:
+		// 	'https://media.newyorker.com/photos/5b733c3f4545774bcd21b838/master/w_2560%2Cc_limit/591205_ra552.jpg',
+		// taliesinWest: 'https://franklloydwright.org/wp-content/uploads/2025/01/TW2023HIGH_Andrew-Pielage-45-tours-header1.jpg',
+		// taliesin:
+		// 	'https://franklloydwright.org/wp-content/uploads/2025/07/blog-header.jpg'
+
+		portrait: '/buildings/about/portrait.png',
+		broadacre: '/buildings/about/broadacre.png',
+		guggenheim: '/buildings/about/guggenheim.png',
+		taliesinWest: '/buildings/about/taliesinwest.png',
+		taliesin: '/buildings/about/taliesin.png'
 	};
 
 	const quotes = [
@@ -155,7 +161,7 @@
 			<div class="portrait-caption">
 				<span class="label">c. 1935</span>
 				<p>
-					Wright cu macheta Broadacre City — viziunea sa utopică asupra orașului american
+					Macheta Broadacre City — viziunea sa utopică asupra orașului american
 					descentralizat
 				</p>
 			</div>
@@ -171,7 +177,7 @@
 			<div class="portrait-caption">
 				<span class="label">c. 1956</span>
 				<p>
-					Wright la șantierul Muzeului Guggenheim din New York, cu câțiva ani înainte de finalizare
+					Muzeului Guggenheim din New York
 				</p>
 			</div>
 		</div>
@@ -186,7 +192,7 @@
 			<div class="portrait-caption">
 				<span class="label">Taliesin West, Arizona</span>
 				<p>
-					Wright în laboratorul său din deșert, unde petrecea lunile de iarnă cu studenții Fundației
+					Laboratorul său din deșert, unde petrecea lunile de iarnă cu studenții Fundației
 				</p>
 			</div>
 		</div>
@@ -201,7 +207,7 @@
 			<div class="portrait-caption">
 				<span class="label">Taliesin, Wisconsin</span>
 				<p>
-					La reședința sa principală din Spring Green — construită și reconstruită de-a lungul a
+					Reședința sa principală din Spring Green — construită și reconstruită de-a lungul a
 					cinci decenii
 				</p>
 			</div>

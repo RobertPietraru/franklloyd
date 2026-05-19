@@ -138,11 +138,12 @@ export const projects: Project[] = [
 		description:
 			'Proiectată pentru moștenitoarea petrolieră și mecenă teatrală Aline Barnsdall pe dealul Olive Hill, casa utilizează betonul turnat decorat cu motive abstracte ale florii de nalbă — floarea preferată a clientei. Motivul floral apare în frizele exterioare, pervazele ferestrelor, mobila integrată și chiar în structura șemineelor, creând un limbaj decorativ coerent și unic. Planul deschis al casei, cu galeria interioară ce oferă vederi spre curtea centrală cu bazin reflectorizant, prefigurează stilul de viață californian modern. Wright a numit proiectul o „Romanza californiană" — o romanță cu climatul, vegetația și libertatea spațiuluii de vest american.',
 		images: {
-			hero: placeholder,
-			exterior: placeholder,
-			exterior2: placeholder,
-			interior: placeholder,
-			withWright: placeholder,
+
+			hero: '/buildings/hollyhock/hero.png',
+			exterior: '/buildings/hollyhock/exterior_1.png',
+			exterior2: '/buildings/hollyhock/exterior_2.png',
+			interior: '/buildings/hollyhock/interior_1.png',
+			interior2: '/buildings/hollyhock/interior_2.png',
 		}
 	},
 	{
@@ -158,11 +159,11 @@ export const projects: Project[] = [
 		description:
 			'Herbert Jacobs, un jurnalist cu un buget de 5.500 de dolari, i-a scris lui Wright că doreste să construiască o casă adevărată, nu o cutie de chibrituri. Răspunsul lui Wright a generat unul dintre cele mai influente concepte din istoria arhitecturii rezidențiale. Casa Usonian elimina pivnița, podul și garderoba separată, înlocuindu-le cu un plan în formă de L, spații multifuncționale și mobilier integrat. Încălzirea prin pardoseală radiantă — o premieră americană — distribuia căldura uniform, fără radiatoare sau conducte vizibile. Carportul, înlocuitor economic al garajului tradițional, a apărut pentru prima dată în arhitectura americană în această casă. Principiile Usonian au influențat direct dezvoltarea suburbanistică americană de după al Doilea Război Mondial.',
 		images: {
-			hero: placeholder,
-			exterior: placeholder,
-			exterior2: placeholder,
-			interior: placeholder,
-			withWright: placeholder,
+			hero: '/buildings/herbert/hero.png',
+			exterior: '/buildings/herbert/exterior_1.png',
+			exterior2: '/buildings/herbert/exterior_2.png',
+			interior: '/buildings/herbert/interior_1.png',
+			interior2: '/buildings/herbert/interior_2.png',
 		}
 	},
 	{
@@ -178,11 +179,11 @@ export const projects: Project[] = [
 		description:
 			'Taliesin — cuvânt galez pentru „sprânceana strălucitoare" — a fost mai mult decât o casă. A fost un manifest arhitectural tridimensional: un loc unde Wright și-a trăit filozofia de-a lungul a aproape cincizeci de ani. Construit pe dealul de deasupra satelor sale natale, complexul cuprinde rezidența, atelierele, grajdurile și câmpurile agricole într-un ansamblu organic care a crescut și s-a transformat constant. Wright a reconstruit Taliesin de două ori după incendii devastatoare — în 1914 și 1925 — refuzând să abandoneze locul. Piatra de calcar galben-ocru extrasă local, lemnul de stejar și tencuiala colorată în tonurile pețisajului contribuie la sentimentul că edificiul a crescut din pâmântul însuși. Taliesin a fost și prima școală de arhitectură Wright, unde studenți din întreaga lume veneau să trăiască și să înveațe în același ritm cu maestrul.',
 		images: {
-			hero: placeholder,
-			exterior: placeholder,
-			exterior2: placeholder,
-			interior: placeholder,
-			withWright: placeholder,
+			hero: '/buildings/taliesin/hero.png',
+			exterior: '/buildings/taliesin/exterior_1.png',
+			exterior2: '/buildings/taliesin/exterior_2.png',
+			interior: '/buildings/taliesin/interior_1.png',
+			interior2: '/buildings/taliesin/interior_2.png',
 		}
 	}
 ];
