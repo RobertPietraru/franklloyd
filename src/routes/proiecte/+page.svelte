@@ -76,15 +76,15 @@
 	<div class="page-header-meta">
 		<div>
 			<span class="label">total proiecte</span>
-			<strong>{projects.length}</strong>
+			<strong>1141</strong>
 		</div>
 		<div>
 			<span class="label">perioadă</span>
-			<strong>1908 — 1959</strong>
+			<strong>1887 — 1959</strong>
 		</div>
 		<div>
-			<span class="label">locații</span>
-			<strong>SUA</strong>
+			<span class="label">Total proiecte construite</span>
+			<strong>532</strong>
 		</div>
 	</div>
 </header>

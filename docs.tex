@@ -1,0 +1,905 @@
+\documentclass[12pt,a4paper]{report}
+% ─── Encoding & Language ───────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[romanian]{babel}
+
+% ─── Page Layout ───────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% ─── Fonts ─────────────────────────────────────────────────────────────────────
+\usepackage{mathptmx}        % Times New Roman for text and math
+
+% ─── Paragraph indent ──────────────────────────────────────────────────────────
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{2pt}
+
+% ─── Graphics & Colors ─────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+
+% ─── Tables ────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+
+% ─── Code Listings ─────────────────────────────────────────────────────────────
+\usepackage{listings}
+\usepackage{lstautogobble}
+
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codeframe}{RGB}{200,200,200}
+\definecolor{keyword}{RGB}{0,0,180}
+\definecolor{string}{RGB}{163,21,21}
+\definecolor{comment}{RGB}{0,128,0}
+\definecolor{placeholderbg}{RGB}{230,228,224}
+
+\lstset{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{keyword}\bfseries,
+  stringstyle=\color{string},
+  commentstyle=\color{comment}\itshape,
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=6pt,
+  tabsize=4,
+  autogobble=true,
+  captionpos=b,
+  aboveskip=6pt,
+  belowskip=6pt,
+}
+
+\lstdefinelanguage{TypeScript}{
+  keywords={const, let, var, function, return, import, export, from, type,
+            interface, class, extends, implements, new, this, if, else,
+            for, while, switch, case, break, default, async, await, string,
+            number, boolean, void, null, undefined, true, false, error},
+  morestring=[b]',
+  morestring=[b]",
+  morestring=[b]`,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true
+}
+
+\lstdefinelanguage{Svelte}{
+  keywords={script, style, div, h1, h2, h3, p, a, button, nav, img, section,
+            article, header, footer, span, ul, li, svelte, head,
+            const, let, var, function, return, import, export, from, if,
+            else, each, onMount, bind, this},
+  morestring=[b]',
+  morestring=[b]",
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  sensitive=true
+}
+
+% ─── Image placeholder ─────────────────────────────────────────────────────────
+\newcommand{\imgplaceholder}[3][6cm]{%
+  \begin{figure}[H]
+    \centering
+    \fcolorbox{codeframe}{placeholderbg}{%
+      \parbox[c][#1][c]{0.88\textwidth}{%
+        \centering\color{gray}\itshape #2%
+      }%
+    }
+    \caption{#2}
+    \label{#3}
+  \end{figure}
+}
+
+% ─── Hyperlinks ────────────────────────────────────────────────────────────────
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  citecolor=black,
+  pdftitle={Lucrare de Atestat -- Frank Lloyd Wright -- Arhitectura Organica},
+  pdfauthor={Daniliuc Mirela Iasmina},
+}
+
+% ─── Headers & Footers ─────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ─── Chapter / Section Formatting ──────────────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\chapter}[block]
+  {\normalfont\Large\bfseries}{\thechapter.}{0.8em}{}
+\titlespacing*{\chapter}{0pt}{14pt}{8pt}
+
+\titleformat{\section}[block]
+  {\normalfont\large\bfseries}{\thesection}{0.8em}{}
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+\titleformat{\subsection}[block]
+  {\normalfont\normalsize\bfseries}{\thesubsection}{0.8em}{}
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+
+% ─── List Spacing ──────────────────────────────────────────────────────────────
+\usepackage{enumitem}
+\setlist{
+  itemsep=1pt,
+  parsep=0pt,
+  topsep=3pt,
+  partopsep=0pt,
+}
+\setlist[itemize]{leftmargin=1.5cm}
+\setlist[enumerate]{leftmargin=1.5cm}
+
+% ─── Miscellaneous ─────────────────────────────────────────────────────────────
+\usepackage{microtype}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, skip=4pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── COVER PAGE ────────────────────────────────────────────────────────────────
+\begin{titlepage}
+  \centering
+  {\Large\bfseries Colegiul Național „A.T. Laurian" Botoșani\par}
+  \vspace{0.2cm}
+  {\large Specializarea: Matematică-informatică, intensiv engleză\par}
+  \vspace{1.5cm}
+  \vfill
+  {\huge\bfseries Lucrare de atestat profesional\\[0.3cm] la informatică\par}
+  \vfill
+
+  {\large\bfseries Profesor coordonator:}\\[0.2cm]
+  {\large Giocaș Carmen Afrodita\par}
+  \vspace{1cm}
+  {\large\bfseries Candidat:}\\[0.2cm]
+  {\large Daniliuc Mirela Iasmina\par}
+  \vspace{1.5cm}
+  {\large Mai, 2026}
+\end{titlepage}
+
+
+% ─── PROJECT TITLE PAGE ────────────────────────────────────────────────────────
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+  {\large\bfseries Tema Proiectului:\par}
+  \vspace{0.5cm}
+  {\LARGE\bfseries Frank Lloyd Wright\\[0.3cm]
+   Arhitectură Organică\par}
+  \vspace{0.4cm}
+  {\large\itshape Prezentare web a operei arhitecturale a lui Frank Lloyd Wright\par}
+\end{center}
+\vspace*{\fill}
+\newpage
+
+% ─── TABLE OF CONTENTS ─────────────────────────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CHAPTER 1 — ARGUMENT
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Argument}
+
+Am ales ca temă pentru lucrarea mea de atestat realizarea unui site web dedicat
+operei arhitecturale a lui \textbf{Frank Lloyd Wright} (1867--1959), cel mai
+influent arhitect american al secolului al XX-lea. Proiectul prezintă, în limba
+română, opt dintre cele mai reprezentative lucrări ale sale, de la Fallingwater
+și Muzeul Guggenheim până la casele Usonian accesibile clasei de mijloc.
+
+Motivul alegerii acestei teme îl constituie intersecția dintre două domenii care
+mă pasionează: \textbf{informatica} și \textbf{designul vizual}. Frank Lloyd
+Wright a revoluționat arhitectura prin conceptul de \emph{arhitectură organică}
+--- ideea că o clădire trebuie să crească armonios din sitorul, materialele și
+nevoile utilizatorilor ei. Am găsit în această filozofie o paralelă puternică
+cu principiile bunului design de interfețe: un site bun, la fel ca o clădire
+bună, trebuie să fie funcțional, coerent și să comunice conținutul fără efort.
+
+Realizarea proiectului a constituit o oportunitate de a aplica în practică
+concepte din domeniul dezvoltării web moderne: rutare bazată pe sistem de fișiere,
+generare statică a paginilor, animații CSS controlate prin JavaScript nativ și
+exportul unui site complet funcțional ca fișiere HTML statice, deschizabile
+direct din browser fără a necesita un server web.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CHAPTER 2 — INTRODUCERE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Introducere}
+
+Lucrarea de față prezintă site-ul web \textbf{Frank Lloyd Wright --- Arhitectură
+Organică}, o prezentare digitală a operei arhitecturale a lui Frank Lloyd Wright,
+realizată în limba română.
+
+\section{Paginile aplicației}
+
+Din meniul principal al aplicației, utilizatorul poate naviga către următoarele
+secțiuni:
+
+\begin{itemize}
+  \item \textbf{Acasă} --- Pagina principală cu secțiunea hero, introducere
+        biografică, proiecte selectate, citat filozofic și principii de design
+  \item \textbf{Proiecte} --- Lista completă a celor opt proiecte arhitecturale,
+        cu imagini interactive și detalii tehnice
+  \item \textbf{Proiect individual} --- Pagina detaliată a fiecărei lucrări, cu
+        galerie foto, descriere aprofundată și navigare între proiecte
+  \item \textbf{Despre} --- Biografie, linie de timp și filosofia arhitecturală
+        a lui Frank Lloyd Wright
+\end{itemize}
+
+\section{Tehnologiile utilizate}
+
+Aplicația a fost realizată utilizând:
+
+\begin{itemize}
+  \item \textbf{SvelteKit 2.x} cu \textbf{Svelte 5} --- framework pentru
+        construirea interfețelor web, cu sistemul reactiv de tip Runes
+  \item \textbf{TypeScript} --- pentru tipizarea statică a datelor și a
+        logicii componentelor
+  \item \textbf{CSS scoped} --- stilizare izolată per componentă, fără
+        framework extern, cu variabile CSS globale pentru sistemul de design
+  \item \textbf{@sveltejs/adapter-static} --- pentru generarea unui site
+        complet static, exportabil ca fișiere HTML/CSS
+  \item \textbf{Vite 8.x} --- instrument de build și server de dezvoltare
+\end{itemize}
+
+\imgplaceholder[5.5cm]{Pagina principală a site-ului Frank Lloyd Wright}{fig:home}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CHAPTER 3 — GENERALITĂȚI DESPRE TEHNOLOGIILE FOLOSITE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Generalități despre tehnologiile folosite}
+
+\section{Limbajul TypeScript}
+
+\textbf{TypeScript} este un limbaj de programare dezvoltat de \textbf{Microsoft},
+lansat în 2012, care extinde JavaScript prin adăugarea \textbf{tipizării statice}.
+Codul TypeScript este transpilat în JavaScript standard înainte de rulare, iar
+erorile de tip sunt detectate la momentul compilării, nu în producție.
+
+Principalele avantaje ale TypeScript:
+
+\begin{itemize}
+  \item \textbf{Detectarea erorilor la compilare:} Greșelile de tip sunt
+        identificate înainte de rularea codului.
+  \item \textbf{Autocompletare inteligentă:} Editoarele de cod pot oferi
+        sugestii precise bazate pe tipuri.
+  \item \textbf{Interfețe și tipuri:} Permit definirea clară a structurii
+        datelor complexe.
+  \item \textbf{Compatibilitate cu JavaScript:} Orice cod JavaScript valid
+        este și cod TypeScript valid.
+\end{itemize}
+
+În cadrul proiectului, TypeScript este utilizat pentru definirea modelului de
+date al proiectelor arhitecturale (fișierul \texttt{src/lib/data/projects.ts})
+și pentru logica de navigare și animații din componente.
+
+\begin{lstlisting}[language=TypeScript,
+  caption={Interfața \texttt{Project} din \texttt{src/lib/data/projects.ts}}]
+export interface Project {
+    slug: string;
+    title: string;
+    year: number;
+    location: string;
+    style: string;
+    client: string;
+    material: string;
+    intro: string;
+    description: string;
+    images: {
+        hero: string;
+        exterior: string;
+        exterior2?: string;
+        interior: string;
+        interior2?: string;
+        withWright?: string;
+    };
+}
+\end{lstlisting}
+
+\section{Framework-ul SvelteKit}
+
+\textbf{Svelte} este un framework UI creat de \textbf{Rich Harris}, lansat în
+2016. Spre deosebire de React sau Vue, Svelte \textbf{compilează componentele
+la momentul construirii} (\textit{build time}), generând JavaScript optimizat
+fără a necesita un DOM virtual la runtime. Rezultatul este o aplicație mai
+rapidă și cu un pachet mai mic.
+
+\textbf{SvelteKit} (versiunea 2.x) este framework-ul full-stack construit pe
+baza Svelte. Oferă:
+
+\begin{itemize}
+  \item \textbf{Rutare bazată pe sistemul de fișiere:} Fiecare fișier
+        \texttt{+page.svelte} dintr-un director devine o pagină la acea rută.
+  \item \textbf{Generare statică (SSG):} Prin \texttt{adapter-static}, toate
+        paginile sunt pre-randate la build time ca fișiere HTML pure.
+  \item \textbf{Layout-uri partajate:} Fișierul \texttt{+layout.svelte}
+        definește structura comună (bară de navigare, subsol).
+  \item \textbf{Rute dinamice:} Directoarele \texttt{[slug]} generează câte o
+        pagină pentru fiecare parametru definit în funcția \texttt{entries()}.
+  \item \textbf{Prerendare completă:} Exportul \texttt{prerender = true}
+        instruiește SvelteKit să genereze HTML pentru toate paginile la build.
+\end{itemize}
+
+\textbf{Svelte 5} (utilizat în proiect) introduce conceptul de \textbf{Runes}
+--- un nou sistem reactiv bazat pe \texttt{\$state}, \texttt{\$derived} și
+\texttt{\$props} pentru gestionarea stării componentelor, înlocuind sintaxa
+anterioară bazată pe \texttt{let} reactiv și \texttt{store}.
+
+\begin{lstlisting}[language=Svelte,
+  caption={Exemplu de Runes Svelte 5 în componenta Navbar}]
+<script lang="ts">
+    import { page } from '$app/stores';
+
+    const links = [
+        { href: '/', label: 'acasa' },
+        { href: '/proiecte', label: 'proiecte' },
+        { href: '/despre', label: 'despre' }
+    ];
+
+    let scrolled = $state(false);
+
+    function onScroll() {
+        scrolled = window.scrollY > 40;
+    }
+</script>
+
+<svelte:window on:scroll={onScroll} />
+
+<nav class:scrolled>
+    <!-- ... -->
+</nav>
+\end{lstlisting}
+
+\section{CSS Scoped și Variabile CSS}
+
+Proiectul nu utilizează un framework CSS extern (precum TailwindCSS sau
+Bootstrap), ci \textbf{CSS scoped}, stiluri izolate per componentă generate
+automat de compilatorul Svelte. Fiecare componentă primește un sufix unic de
+clasă (de exemplu \texttt{.svelte-rfuq4y}), prevenind conflictele de stiluri
+între componente diferite.
+
+Sistemul de design global este definit prin \textbf{variabile CSS} în
+\texttt{:root}, în fișierul \texttt{src/app.css}:
+
+\begin{lstlisting}[language=bash,
+  caption={Variabilele CSS globale ale sistemului de design}]
+:root {
+  --bg: #F5F2ED;          /* fundal cald, aproape alb */
+  --bg-alt: #EDEAE3;
+  --ink: #0C0B09;         /* text principal */
+  --ink-secondary: #3E3A35;
+  --muted: #7A746D;
+  --gold: #A87840;        /* culoarea de accent */
+  --gold-light: #C4975A;
+  --border: #DAD4CB;
+  --dark-bg: #181512;     /* fundal subsol */
+  --dark-text: #F5F2ED;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --nav-height: 68px;
+  --pad-x: clamp(24px, 5.5vw, 88px);
+  --pad-section: clamp(80px, 11vw, 148px);
+}
+\end{lstlisting}
+
+Paleta de culori evocă materialele naturale asociate lui Wright: crem-lut
+pentru fundal, ocru-auriu pentru accent și aproape-negru organic pentru text.
+
+\section{Generarea Statică --- adapter-static}
+
+\textbf{@sveltejs/adapter-static} este adaptorul oficial SvelteKit pentru
+generarea site-urilor complet statice. Cu această configurație, procesul de
+build parcurge fiecare rută definită în aplicație, execută logica de
+server-side rendering pentru acea rută și salvează rezultatul HTML în fișiere
+pe disc, în directorul \texttt{build/}.
+
+Configurația proiectului (\texttt{svelte.config.js}):
+
+\begin{lstlisting}[language=bash,
+  caption={Configurația SvelteKit pentru generare statică}]
+import adapter from '@sveltejs/adapter-static';
+
+export default {
+  kit: {
+    adapter: adapter({
+      pages: 'build',
+      assets: 'build',
+      fallback: undefined
+    }),
+    paths: {
+      relative: true    // Cai relative in loc de absolute
+    },
+    prerender: {
+      entries: ['*']    // Genereaza toate paginile
+    }
+  }
+};
+\end{lstlisting}
+
+Opțiunea \texttt{paths.relative: true} face ca toate referințele la resurse
+(CSS, imagini, linkuri interne) să fie relative față de locul fișierului HTML,
+ceea ce permite deschiderea site-ului direct din sistemul de fișiere, fără
+server web.
+
+Directiva \texttt{export const csr = false} din \texttt{+layout.ts} dezactivează
+complet runtime-ul JavaScript al SvelteKit în browser: paginile sunt HTML pur,
+fără hidratare. Animațiile și interactivitățile sunt gestionate prin JavaScript
+nativ (vanilla JS), inclus direct în \texttt{app.html}.
+
+\section{Vite --- Instrumentul de build}
+
+\textbf{Vite} (versiunea 8.x) este instrumentul de build și serverul de
+dezvoltare al proiectului. Folosește \textbf{ES Modules native} în browser
+pentru pornire instantanee în modul de dezvoltare și \textbf{Rollup} pentru
+bundling la producție.
+
+Plugin-uri Vite utilizate:
+
+\begin{itemize}
+  \item \texttt{@sveltejs/vite-plugin-svelte} --- compilarea componentelor
+        Svelte și integrarea cu SvelteKit
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CHAPTER 4 — CERINTE HARDWARE SI SOFTWARE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Cerințe hardware și software}
+
+\section{Cerințe hardware pentru dezvoltare}
+
+\begin{itemize}
+  \item Procesor la minimum 1 GHz (recomandat 2 GHz sau mai mult)
+  \item Minimum 2 GB RAM (recomandat 8 GB)
+  \item Minimum 300 MB spațiu liber pe disc
+  \item Conexiune la internet (pentru instalarea dependențelor npm și
+        încărcarea fonturilor Google Fonts în browser)
+\end{itemize}
+
+\section{Software necesar pentru dezvoltare}
+
+\begin{itemize}
+  \item \textbf{Node.js} versiunea 18 sau mai recentă
+  \item \textbf{npm} (versiunea 9 sau mai recentă) --- managerul de pachete
+  \item \textbf{Git} --- pentru versionarea codului sursă
+  \item Un editor de cod, recomandat \textbf{Visual Studio Code} cu extensia
+        oficială Svelte (\texttt{svelte.svelte-vscode})
+\end{itemize}
+
+\section{Vizualizarea site-ului static (utilizator final)}
+
+Spre deosebire de site-urile web tradiționale, versiunea exportată a
+proiectului poate fi deschisă direct din sistemul de fișiere, fără a instala
+sau porni vreun server web:
+
+\begin{itemize}
+  \item Orice browser web modern: Google Chrome (recomandat), Mozilla Firefox,
+        Microsoft Edge, Safari
+  \item Nu este necesar niciun software instalat pe calculatorul utilizatorului
+        în afara unui browser
+  \item Se deschide fișierul \texttt{build/index.html} direct din manager-ul
+        de fișiere sau din linia de comandă
+\end{itemize}
+
+\section{Comenzi de dezvoltare}
+
+\begin{lstlisting}[language=bash, caption={Comenzile npm disponibile în proiect}]
+npm install          # Instalarea dependentelor
+npm run dev          # Pornirea serverului de dezvoltare (Vite)
+npm run build        # Build complet: vite build + relativizare linkuri
+npm run preview      # Previzualizarea build-ului pe un server local
+npm run check        # Verificare tipuri TypeScript si Svelte
+npm run format       # Formatare automata a codului sursa (Prettier)
+\end{lstlisting}
+
+Comanda \texttt{npm run build} execută două etape succesive: mai întâi
+\texttt{vite build} generează fișierele HTML statice în directorul
+\texttt{build/}, apoi scriptul \texttt{node scripts/relativize.js} rescrie
+toate linkurile interne din formatul absolut (\texttt{href="/proiecte"}) în
+formatul relativ (\texttt{href="./proiecte.html"}), necesar pentru protocolul
+\texttt{file://}.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CHAPTER 5 — STRUCTURA SI CONTINUTUL PROIECTULUI
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Structura și conținutul proiectului}
+
+\section{Harta site-ului}
+
+\begin{table}[H]
+  \centering
+  \caption{Rutele aplicației și fișierele corespunzătoare}
+  \label{tab:routes}
+  \begin{tabularx}{\textwidth}{>{\ttfamily}l >{\ttfamily}l X}
+    \toprule
+    \textbf{Rută} & \textbf{Fișier pagină} & \textbf{Descriere} \\
+    \midrule
+    /                    & +page.svelte              & Pagina principală (hero, intro, proiecte selectate) \\
+    /proiecte            & proiecte/+page.svelte     & Lista completă a celor 8 proiecte \\
+    /proiecte/[slug]     & proiecte/[slug]/+page.svelte & Pagina detaliată a unui proiect \\
+    /despre              & despre/+page.svelte       & Biografie, linie de timp, citate \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+La build, ruta dinamică \texttt{/proiecte/[slug]} generează 8 fișiere HTML
+statice: \texttt{fallingwater.html}, \texttt{guggenheim.html},
+\texttt{taliesin-west.html}, \texttt{robie-house.html},
+\texttt{unity-temple.html}, \texttt{hollyhock-house.html},
+\texttt{jacobs-house.html} și \texttt{taliesin.html}.
+
+\section{Structura directoarelor}
+
+\begin{lstlisting}[language=bash,
+  caption={Structura proiectului franklloyd/}]
+franklloyd/
+|-- src/
+|   |-- routes/
+|   |   |-- +page.svelte           # Pagina principala
+|   |   |-- +layout.svelte         # Layout global (Navbar + subsol)
+|   |   |-- +layout.ts             # prerender=true, csr=false
+|   |   |-- proiecte/
+|   |   |   |-- +page.svelte       # Lista proiecte cu toggle imagine
+|   |   |   |-- [slug]/
+|   |   |   |   |-- +page.svelte   # Detaliu proiect (galerie, descriere)
+|   |   |   |   |-- +page.ts       # entries() + load() cu date proiect
+|   |   |-- despre/
+|   |   |   |-- +page.svelte       # Biografie si linie de timp
+|   |-- lib/
+|   |   |-- components/
+|   |   |   |-- Navbar.svelte      # Bara de navigare fixa
+|   |   |   |-- ImageTilt.svelte   # Componenta imagine cu efect tilt
+|   |   |-- data/
+|   |   |   |-- projects.ts        # Date pentru cele 8 proiecte
+|   |-- app.css                    # Stiluri globale si variabile CSS
+|   |-- app.html                   # Template HTML de baza cu JS nativ
+|-- scripts/
+|   |-- relativize.js              # Post-build: rescrie linkurile ca relative
+|-- static/
+|   |-- placeholder.png            # Imagine placeholder pentru proiecte
+|-- svelte.config.js               # Configuratie adapter-static
+|-- vite.config.ts
+|-- package.json
+\end{lstlisting}
+
+\section{Datele proiectelor arhitecturale}
+
+Toate datele despre proiectele arhitecturale sunt stocate în fișierul
+\texttt{src/lib/data/projects.ts}, ca un array de obiecte TypeScript. Fiecare
+obiect respectă interfața \texttt{Project} și conține:
+
+\begin{itemize}
+  \item \textbf{slug} --- identificatorul unic folosit în URL (ex: \texttt{fallingwater})
+  \item \textbf{title, year, location, style} --- date de identificare
+  \item \textbf{client, material} --- informații tehnice și istorice
+  \item \textbf{intro} --- rezumat scurt (afișat în liste și carduri)
+  \item \textbf{description} --- descriere detaliată (afișată pe pagina individuală)
+  \item \textbf{images} --- obiect cu URL-uri pentru imaginile hero, exterior și interior
+\end{itemize}
+
+Proiectele documentate sunt:
+
+\begin{table}[H]
+  \centering
+  \caption{Proiectele arhitecturale prezentate în aplicație}
+  \label{tab:projects}
+  \begin{tabularx}{\textwidth}{l l >{\ttfamily}l X}
+    \toprule
+    \textbf{Nr.} & \textbf{An} & \textbf{Slug} & \textbf{Titlu} \\
+    \midrule
+    1 & 1910 & robie-house     & Casa Frederick C. Robie \\
+    2 & 1908 & unity-temple    & Unity Temple \\
+    3 & 1911 & taliesin        & Taliesin \\
+    4 & 1921 & hollyhock-house & Hollyhock House \\
+    5 & 1935 & fallingwater    & Fallingwater \\
+    6 & 1937 & taliesin-west   & Taliesin West \\
+    7 & 1937 & jacobs-house    & Casa Herbert Jacobs I \\
+    8 & 1959 & guggenheim      & Muzeul Solomon R. Guggenheim \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{Componenta Navbar}
+
+Bara de navigare este implementată în \texttt{src/lib/components/Navbar.svelte}
+și este inclusă global prin \texttt{+layout.svelte}. Are poziție fixă în
+partea superioară a paginii și devine opacă (fundal solid) când utilizatorul
+derulează pagina mai jos de 40 de pixeli, pentru a asigura lizibilitatea
+linkurilor pe orice fond.
+
+Legătura activă este detectată prin compararea \texttt{\$page.url.pathname}
+cu URL-ul fiecărui element de navigare --- la prerendare, această valoare este
+cunoscută, deci clasa \texttt{active} este baked in HTML la build time,
+fără a necesita JavaScript în browser.
+
+\begin{lstlisting}[language=Svelte,
+  caption={Marcarea legăturii active în Navbar.svelte}]
+{#each links as { href, label }}
+    <li>
+        <a {href}
+           class:active={
+               $page.url.pathname === href ||
+               ($page.url.pathname.startsWith(href)
+                && href !== '/')
+           }>
+            {label}
+        </a>
+    </li>
+{/each}
+\end{lstlisting}
+
+\imgplaceholder[5cm]{Bara de navigare în stare normală și cu fundal activat la scroll}{fig:navbar}
+
+\section{Componenta ImageTilt}
+
+\texttt{src/lib/components/ImageTilt.svelte} implementează efectul de
+perspectivă 3D la hover --- imaginea se încline ușor în direcția cursorului
+mouse-ului, creând iluzia de adâncime. Efectul este realizat prin interpolarea
+liniară (\textit{lerp}) a unghiurilor de rotație, animat printr-un loop
+\texttt{requestAnimationFrame}.
+
+\begin{lstlisting}[language=Svelte,
+  caption={Logica de animație lerp din ImageTilt.svelte}]
+function loop() {
+    cx = lerp(cx, tx, 0.09);
+    cy = lerp(cy, ty, 0.09);
+    if (!hovering && Math.abs(cx) < 0.004
+                  && Math.abs(cy) < 0.004) {
+        cx = 0; cy = 0;
+        imageEl.style.transform = '';
+        running = false;
+        return;
+    }
+    imageEl.style.transform =
+        'perspective(900px) ' +
+        'rotateY(' + cx + 'deg) ' +
+        'rotateX(' + (-cy) + 'deg) ' +
+        'scale(1.04)';
+    raf = requestAnimationFrame(loop);
+}
+\end{lstlisting}
+
+Componenta acceptă proprietățile: \texttt{src}, \texttt{alt},
+\texttt{aspectRatio}, \texttt{intensity} și \texttt{overlay}. Intensitatea
+efectului este stocată și în atributul HTML \texttt{data-intensity}, pentru
+a putea fi citit de JavaScript nativ la redeschiderea paginii statice.
+
+\imgplaceholder[5cm]{Efectul ImageTilt activ pe un card de proiect}{fig:imagetilt}
+
+\section{Animațiile de tip scroll reveal}
+
+Elementele de conținut sunt inițial invizibile (\texttt{opacity: 0},
+\texttt{transform: translateY(36px)}) și devin vizibile la intrarea în
+viewport prin clasa CSS \texttt{.visible}:
+
+\begin{lstlisting}[language=bash,
+  caption={Stilul de bază pentru animația reveal în app.css}]
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+\end{lstlisting}
+
+Deoarece site-ul exportat dezactivează runtime-ul SvelteKit
+(\texttt{csr = false}), logica \texttt{IntersectionObserver} este implementată
+ca JavaScript nativ în \texttt{app.html}, executat la fiecare încărcare de
+pagină:
+
+\begin{lstlisting}[language=bash,
+  caption={IntersectionObserver nativ în app.html (vanilla JS)}]
+(function () {
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) e.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+        observer.observe(el);
+    });
+})();
+\end{lstlisting}
+
+\section{Pagina principală}
+
+Pagina principală este structurată în șase secțiuni:
+
+\begin{enumerate}
+  \item \textbf{Hero} --- Imagine full-screen cu titlul animat al arhitectului,
+        cifre statistice (532 proiecte, 70+ ani de activitate) și un buton de
+        scroll, animate la intrarea pe pagină printr-o clasă \texttt{visible}
+        aplicată cu un \texttt{setTimeout} de 100 ms
+  \item \textbf{Intro} --- Citat celebru și biografie scurtă, cu link spre
+        pagina \emph{Despre}
+  \item \textbf{Featured} --- Trei carduri cu proiectele cele mai reprezentative
+        (Fallingwater, Guggenheim, Taliesin West), fiecare utilizând componenta
+        \texttt{ImageTilt}
+  \item \textbf{Philosophy band} --- Bandă cu citat filozofic suprapus pe o
+        imagine de fundal
+  \item \textbf{Principii fundamentale} --- Patru principii ale arhitecturii
+        organice (orizontalitate, spațiu deschis, lumina naturală, materiale
+        locale), prezentate în grilă
+\end{enumerate}
+
+\imgplaceholder[5.5cm]{Secțiunea hero a paginii principale, cu titlul animat}{fig:homepage-hero}
+
+\section{Pagina Proiecte}
+
+Pagina \texttt{/proiecte} prezintă toate cele opt proiecte în format listă, câte
+unul pe rând. Fiecare intrare în listă conține:
+
+\begin{itemize}
+  \item Un număr de ordine și metadate (an, locație)
+  \item Două imagini suprapuse (exterior/interior) cu posibilitate de comutare
+        printr-un buton thumbnail; comutarea este gestionată de JavaScript nativ
+  \item Efect de perspectivă tilt la hover, aplicat pe blocul de imagini
+  \item Titlul, stilul arhitectural, o descriere introductivă și detalii despre
+        client și materiale
+  \item Un link \emph{descoperă proiectul} spre pagina individuală
+\end{itemize}
+
+\imgplaceholder[6cm]{Pagina Proiecte --- un rând din lista de lucrări arhitecturale}{fig:proiecte}
+
+\section{Pagina individuală de proiect}
+
+Fiecare proiect individual (\texttt{/proiecte/[slug]}) are o structură proprie:
+
+\begin{enumerate}
+  \item \textbf{Hero section} --- Titlul proiectului animat cuvânt cu cuvânt,
+        stilul arhitectural și un tabel cu datele principale (an, locație,
+        client, materiale)
+  \item \textbf{Galerie exterior} --- Două imagini cu exteriorul clădirii,
+        principale și secundare
+  \item \textbf{Galerie interior} --- O imagine mare și una mai mică a
+        interiorului
+  \item \textbf{Descriere} --- Textul detaliat al proiectului (300--400 cuvinte)
+  \item \textbf{Navigare} --- Săgeți spre proiectul precedent și următor
+\end{enumerate}
+
+Funcția \texttt{entries()} din \texttt{+page.ts} informează SvelteKit despre
+toate valorile posibile ale parametrului \texttt{[slug]}, necesare pentru
+prerendarea statică:
+
+\begin{lstlisting}[language=TypeScript,
+  caption={Funcția entries() pentru generarea statică a paginilor dinamice}]
+import { projects } from '$lib/data/projects';
+import { error } from '@sveltejs/kit';
+
+export const entries = () =>
+    projects.map((p) => ({ slug: p.slug }));
+
+export const load = ({ params }) => {
+    const project = projects.find(
+        (p) => p.slug === params.slug
+    );
+    if (!project) error(404, 'Proiect negasit');
+
+    const idx = projects.findIndex(
+        (p) => p.slug === params.slug
+    );
+    return {
+        project,
+        prev: idx > 0 ? projects[idx - 1] : null,
+        next: idx < projects.length - 1
+            ? projects[idx + 1] : null
+    };
+};
+\end{lstlisting}
+
+\imgplaceholder[6cm]{Pagina individuală a proiectului Fallingwater}{fig:proiect-detail}
+
+\section{Pagina Despre}
+
+Pagina \texttt{/despre} prezintă biografia lui Frank Lloyd Wright prin trei
+elemente principale:
+
+\begin{itemize}
+  \item \textbf{Linie de timp} --- Zece momente-cheie din viața arhitectului,
+        de la nașterea din 1867 până la deschiderea Muzeului Guggenheim în 1959
+  \item \textbf{Galerie portret} --- Imagini ale arhitectului și ale unor
+        proiecte semnificative, cu efect \texttt{ImageTilt}
+  \item \textbf{Citate filozofice} --- Trei citate celebre ale lui Wright,
+        rotite automat la un interval de 5 secunde printr-un timer JavaScript
+\end{itemize}
+
+\imgplaceholder[5cm]{Pagina Despre --- secțiunea cu linia de timp}{fig:despre}
+
+\section{Scriptul de relativizare a linkurilor}
+
+O provocare tehnică a proiectului a fost compatibilizarea site-ului cu
+protocolul \texttt{file://}: browserele moderne blochează navigarea spre URL-uri
+absolute (\texttt{href="/proiecte"}) când un fișier HTML este deschis din
+sistemul de fișiere local.
+
+Scriptul \texttt{scripts/relativize.js} rezolvă această problemă prin
+postprocesarea HTML-ului generat de SvelteKit:
+
+\begin{lstlisting}[language=bash,
+  caption={Scriptul relativize.js --- reescrierea linkurilor după build}]
+const files = findHtmlFiles(buildDir);
+
+for (const file of files) {
+    const dir = dirname(file);
+    const content = readFileSync(file, 'utf8')
+        .replace(/href="(\/[^"#?]*)"/g, (_, href) => {
+            // Converteste /proiecte -> ./proiecte.html
+            const target = href === '/'
+                ? 'index.html'
+                : href.replace(/^\//, '') + '.html';
+            let rel = relative(dir,
+                join(buildDir, target));
+            if (!rel.startsWith('.'))
+                rel = './' + rel;
+            return `href="${rel}"`;
+        });
+    writeFileSync(file, content);
+}
+\end{lstlisting}
+
+Scriptul parcurge recursiv directorul \texttt{build/}, găsește toate fișierele
+\texttt{.html} (excluzând directorul \texttt{\_app} cu resursele statice),
+și rescrie fiecare atribut \texttt{href} cu cale absolută în calea relativă
+corespunzătoare față de locația acelui fișier HTML.
+
+\section{JavaScript nativ pentru interactivitate}
+
+Deoarece runtime-ul SvelteKit este dezactivat în versiunea statică
+(\texttt{csr = false}), toate interactivitățile vizuale sunt implementate ca
+JavaScript nativ, inclus în blocul \texttt{<script>} din \texttt{app.html}.
+Acesta rulează la fiecare încărcare de pagină și inițializează:
+
+\begin{itemize}
+  \item \textbf{Navbar scroll} --- eveniment \texttt{scroll} cu clasa
+        \texttt{scrolled} la derulare
+  \item \textbf{Hero visible} --- \texttt{setTimeout(100ms)} pentru animația
+        de intrare a secțiunii hero
+  \item \textbf{Reveal observer} --- \texttt{IntersectionObserver} pentru
+        elementele cu clasa \texttt{.reveal}
+  \item \textbf{ImageTilt} --- efect 3D pentru elementele \texttt{.tilt-container}
+  \item \textbf{Tilt pe liste} --- efect 3D similar pentru \texttt{.project-images}
+  \item \textbf{Toggle imagini} --- butonul \texttt{.img-thumb} comută între
+        imaginea de exterior și cea de interior pe pagina Proiecte
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CHAPTER 6 — BIBLIOGRAFIE
+% ═══════════════════════════════════════════════════════════════════════════════
+\chapter{Bibliografie}
+
+\begin{itemize}[label=\textbullet]
+  \item SvelteKit --- Documentație oficială: \url{https://svelte.dev/docs/kit}
+  \item Svelte 5 Runes --- Documentație oficială: \url{https://svelte.dev/docs/svelte/runes}
+  \item TypeScript --- Documentație oficială: \url{https://www.typescriptlang.org/docs/}
+  \item Vite --- Documentație oficială: \url{https://vite.dev/guide/}
+  \item MDN Web Docs --- CSS custom properties: \url{https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties}
+  \item MDN Web Docs --- IntersectionObserver API: \url{https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API}
+  \item MDN Web Docs --- requestAnimationFrame: \url{https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame}
+  \item @sveltejs/adapter-static --- Documentație: \url{https://kit.svelte.dev/docs/adapter-static}
+  \item Frank Lloyd Wright Foundation --- Site oficial: \url{https://franklloydwright.org/}
+  \item Wikipedia --- Frank Lloyd Wright: \url{https://ro.wikipedia.org/wiki/Frank_Lloyd_Wright}
+  \item Space Grotesk (font) --- Google Fonts: \url{https://fonts.google.com/specimen/Space+Grotesk}
+  \item DM Sans (font) --- Google Fonts: \url{https://fonts.google.com/specimen/DM+Sans}
+\end{itemize}
+
+\end{document}
