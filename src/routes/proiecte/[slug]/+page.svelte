@@ -107,12 +107,22 @@
 	</div>
 
 	<div class="proj-gallery-exterior">
-		<div class="gallery-main reveal">
-			<ImageTilt src={project.images.exterior} alt="{project.title} — vedere exterioară" aspectRatio="16/9" intensity={6} />
+		<div class="gallery-secondary reveal reveal-delay-1">
+			<ImageTilt
+				src={project.images.exterior}
+				alt="{project.title} — detaliu exterior"
+				aspectRatio="4/3"
+				intensity={8}
+			/>
 		</div>
 		{#if project.images.exterior2}
 			<div class="gallery-secondary reveal reveal-delay-1">
-				<ImageTilt src={project.images.exterior2} alt="{project.title} — detaliu exterior" aspectRatio="4/3" intensity={8} />
+				<ImageTilt
+					src={project.images.exterior2}
+					alt="{project.title} — detaliu exterior"
+					aspectRatio="4/3"
+					intensity={8}
+				/>
 			</div>
 		{/if}
 	</div>
@@ -127,14 +137,27 @@
 
 	<div class="proj-gallery-interior">
 		<div class="interior-img-large reveal">
-			<ImageTilt src={project.images.interior} alt="{project.title} — interior" aspectRatio="3/2" intensity={7} />
+			<ImageTilt
+				src={project.images.interior}
+				alt="{project.title} — interior"
+				aspectRatio="3/2"
+				intensity={7}
+			/>
 		</div>
 		{#if project.images.interior2}
 			<div class="interior-img-small reveal reveal-delay-1">
-				<ImageTilt src={project.images.interior2} alt="{project.title} — detaliu interior" aspectRatio="1/1" intensity={9} />
+				<ImageTilt
+					src={project.images.interior2}
+					alt="{project.title} — detaliu interior"
+					aspectRatio="1/1"
+					intensity={9}
+				/>
 				<div class="interior-caption">
 					<span class="label">detaliu interior</span>
-					<p>Tratamentul spațiului interior reflectă principiile arhitecturii organice: materiale naturale, lumină zenitală și continuitate spațială.</p>
+					<p>
+						Tratamentul spațiului interior reflectă principiile arhitecturii organice: materiale
+						naturale, lumină zenitală și continuitate spațială.
+					</p>
 				</div>
 			</div>
 		{/if}
@@ -146,18 +169,24 @@
 	<section class="proj-with-wright">
 		<div class="with-wright-inner">
 			<div class="with-wright-image reveal">
-				<ImageTilt src={project.images.withWright} alt="Frank Lloyd Wright și {project.title}" aspectRatio="4/3" intensity={6} />
+				<ImageTilt
+					src={project.images.withWright}
+					alt="Frank Lloyd Wright și {project.title}"
+					aspectRatio="4/3"
+					intensity={6}
+				/>
 			</div>
 			<div class="with-wright-text reveal reveal-delay-1">
 				<span class="label">arhitectul și lucrarea sa</span>
 				<h3>wright și {project.title}</h3>
 				<p>
-					Fiecare proiect al lui Wright era o extensie directă a personalității sale —
-					o viziune materializată cu o persistență care depășea deseori răbdarea clienților,
-					a constructorilor și a criticilor. {project.title.charAt(0).toUpperCase() + project.title.slice(1)} nu face excepție.
+					Fiecare proiect al lui Wright era o extensie directă a personalității sale — o viziune
+					materializată cu o persistență care depășea deseori răbdarea clienților, a constructorilor
+					și a criticilor. {project.title.charAt(0).toUpperCase() + project.title.slice(1)} nu face excepție.
 				</p>
 				<p>
-					„Nu am proiectat niciodată o clădire pe care să nu aș fi putut-o trăi sau lucra în ea cu plăcere."
+					„Nu am proiectat niciodată o clădire pe care să nu aș fi putut-o trăi sau lucra în ea cu
+					plăcere."
 					<cite>— Frank Lloyd Wright</cite>
 				</p>
 			</div>
@@ -172,7 +201,13 @@
 			<span class="label">proiect anterior</span>
 			<div class="proj-nav-content">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-					<path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path
+						d="M13 4l-6 6 6 6"
+						stroke="currentColor"
+						stroke-width="1.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/>
 				</svg>
 				<div>
 					<span class="proj-nav-year">{prev.year}</span>
@@ -193,7 +228,13 @@
 					<h4>{next.title}</h4>
 				</div>
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-					<path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path
+						d="M7 4l6 6-6 6"
+						stroke="currentColor"
+						stroke-width="1.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/>
 				</svg>
 			</div>
 		</a>
@@ -230,9 +271,9 @@
 		inset: 0;
 		background: linear-gradient(
 			to top,
-			rgba(12,11,9,0.9) 0%,
-			rgba(12,11,9,0.3) 55%,
-			rgba(12,11,9,0.15) 100%
+			rgba(12, 11, 9, 0.9) 0%,
+			rgba(12, 11, 9, 0.3) 55%,
+			rgba(12, 11, 9, 0.15) 100%
 		);
 	}
 
@@ -248,10 +289,13 @@
 		font-size: 12px;
 		font-weight: 400;
 		letter-spacing: 0.1em;
-		color: rgba(245,242,237,0.45);
+		color: rgba(245, 242, 237, 0.45);
 	}
 
-	.proj-breadcrumb a:hover { color: rgba(245,242,237,0.85); opacity: 1; }
+	.proj-breadcrumb a:hover {
+		color: rgba(245, 242, 237, 0.85);
+		opacity: 1;
+	}
 
 	.proj-hero-content {
 		position: relative;
@@ -265,7 +309,9 @@
 		margin-bottom: 20px;
 	}
 
-	.meta-dot { color: rgba(245,242,237,0.25); }
+	.meta-dot {
+		color: rgba(245, 242, 237, 0.25);
+	}
 
 	.proj-title {
 		font-size: clamp(48px, 7.5vw, 112px);
@@ -299,7 +345,9 @@
 		color: var(--gold-light);
 		opacity: 0;
 		transform: translateY(12px);
-		transition: opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s;
+		transition:
+			opacity 0.6s ease 0.5s,
+			transform 0.6s ease 0.5s;
 	}
 
 	.proj-hero.visible .proj-hero-style {
@@ -396,7 +444,7 @@
 		grid-column: 1 / -1;
 	}
 
-.proj-gallery-interior {
+	.proj-gallery-interior {
 		display: grid;
 		grid-template-columns: 3fr 2fr;
 		gap: 24px;
@@ -485,9 +533,13 @@
 		transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
-	.proj-nav-item:hover::before { width: 100%; }
+	.proj-nav-item:hover::before {
+		width: 100%;
+	}
 
-	.proj-nav-prev { border-right: 1px solid var(--border); }
+	.proj-nav-prev {
+		border-right: 1px solid var(--border);
+	}
 
 	.proj-nav-item .label {
 		display: block;
@@ -518,7 +570,9 @@
 		transition: color 0.3s ease;
 	}
 
-	.proj-nav-item:hover h4 { color: var(--gold); }
+	.proj-nav-item:hover h4 {
+		color: var(--gold);
+	}
 
 	/* Arrow nudges outward on hover */
 	.proj-nav-content svg {
@@ -526,18 +580,41 @@
 		flex-shrink: 0;
 	}
 
-	.proj-nav-prev:hover .proj-nav-content svg { transform: translateX(-4px); }
-	.proj-nav-next:hover .proj-nav-content svg { transform: translateX(4px); }
+	.proj-nav-prev:hover .proj-nav-content svg {
+		transform: translateX(-4px);
+	}
+	.proj-nav-next:hover .proj-nav-content svg {
+		transform: translateX(4px);
+	}
 
-	.proj-nav-thumb { display: none; }
+	.proj-nav-thumb {
+		display: none;
+	}
 
 	@media (max-width: 900px) {
-		.proj-overview-inner { grid-template-columns: 1fr; gap: 48px; }
-		.proj-gallery-exterior { grid-template-columns: 1fr; }
-		.gallery-main { grid-column: 1; }
-		.proj-gallery-interior { grid-template-columns: 1fr; }
-		.with-wright-inner { grid-template-columns: 1fr; gap: 40px; }
-		.proj-nav { grid-template-columns: 1fr; }
-		.proj-nav-prev { border-right: none; border-bottom: 1px solid var(--border); }
+		.proj-overview-inner {
+			grid-template-columns: 1fr;
+			gap: 48px;
+		}
+		.proj-gallery-exterior {
+			grid-template-columns: 1fr;
+		}
+		.gallery-main {
+			grid-column: 1;
+		}
+		.proj-gallery-interior {
+			grid-template-columns: 1fr;
+		}
+		.with-wright-inner {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+		.proj-nav {
+			grid-template-columns: 1fr;
+		}
+		.proj-nav-prev {
+			border-right: none;
+			border-bottom: 1px solid var(--border);
+		}
 	}
 </style>

@@ -55,11 +55,12 @@ export const projects: Project[] = [
 		description:
 			'Forma de „zigurat inversat" și rampa spiralată interioară permit vizitatorilor să urce cu liftul până la etajul cel mai înalt și să coboare lin, contemplând arta într-o mișcare fluidă și nefragmentată. Wright a lucrat la proiect timp de șaisprezece ani, depunând șase versiuni înainte ca construcția să înceapă în 1956. Curentul central de lumină care coboară prin ochiul domului de sticlă creează o atmosferă aproape sacră, transformând clădirea în ea însăși într-o operă de artă. Forma cilindrică în extravagantă contradicție cu cartierul rezidențial de pe Fifth Avenue a stârnit atât admirație, cât și controversă în rândul criticilor de artă ai vremii.',
 		images: {
-			hero: 'https://www.guggenheim.org/wp-content/uploads/2016/04/architecture-srgm-exterior-flavin-16-9-ratio-web.jpg',
-			exterior: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Museo_Guggenheim%2C_Bilbao_%2831273245344%29.jpg',
-			exterior2: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Solomon_R._Guggenheim_Museum_%2848059131351%29.jpg/330px-Solomon_R._Guggenheim_Museum_%2848059131351%29.jpg',
-			interior: 'https://www.guggenheim.org/wp-content/uploads/2015/12/architecture-srgm-interior-low-angle-rotunda-16-9.jpg',
-			interior2: 'https://images.ctfassets.net/1aemqu6a6t65/3fPOot0lOk92lV6SHCD16G/bbdf8b9ba47d273312b1c216e689b350/guggsummer2018_encounter050?w=1200&h=800&q=75',
+			hero: '/buildings/guggenheim/hero.jpg',
+			exterior: '/buildings/guggenheim/exterior_1.jpg',
+			exterior2: '/buildings/guggenheim/exterior_2.jpg',
+			interior: '/buildings/guggenheim/interior_1.jpg',
+			interior2: '/buildings/guggenheim/interior_2.jpg',
+
 			withWright: undefined,
 		}
 	},
@@ -76,11 +77,11 @@ export const projects: Project[] = [
 		description:
 			'Taliesin West este mai mult decât o clădire — este o filozofie materializată în piatră și soare. Wright a descoperit terenul în 1937 și a început imediat construcția cu studenții Fundației Taliesin, folosind roca vulcanică neagră și nisipul roșiatic ale deșertului. Profilul jos al complexului, unghiurile inclinate și textura aspră a zidărie permit structurii să crească din sol ca o formaţiune geologică naturală. Pânzele de canvas alb ce filtrau lumina soarelui arizonan — ulterior înlocuite cu fibre de sticlă translucide — umplu spațiile de lucru cu o lumină difuză, caldă, aproape misterioasă. Astăzi, Taliesin West rămâne sediul Fundației Frank Lloyd Wright și al Școlii de Arhitectură Taliesin.',
 		images: {
-			hero: 'https://franklloydwright.org/wp-content/uploads/2025/07/blog-header.jpg',
-			exterior: 'https://franklloydwright.org/wp-content/uploads/2025/01/TW2023HIGH_Andrew-Pielage-45-tours-header1.jpg',
-			exterior2: 'https://franklloydwright.org/wp-content/uploads/2017/07/TaliesinExterior_Andrew-Pielage-2.jpg',
-			interior: 'https://images.squarespace-cdn.com/content/v1/630811a6ad34367560213cfa/1666915124742-8TRZ8F44UQKY8VFUMISE/Frank+Lloyd+Wright%27s+Taliesin+West.jpeg',
-			interior2: 'https://cdn8.openculture.com/wp-content/uploads/2015/08/360-tour-taliesin2.png',
+			hero: '/buildings/taliesinwest/hero.jpg',
+			exterior: '/buildings/taliesinwest/exterior_1.jpg',
+			exterior2: '/buildings/taliesinwest/exterior_2.jpg',
+			interior: '/buildings/taliesinwest/interior_1.jpg',
+			interior2: '/buildings/taliesinwest/interior_2.png',
 			withWright: undefined
 		}
 	},
@@ -97,11 +98,11 @@ export const projects: Project[] = [
 		description:
 			'Liniile orizontale prelungite, streşinile adânci și cărămida romană îngustă reflectă orizontul plat al câmpiei Midwest-ului american. Wright a descompus casa tradițională victoriană — o sumă de cutii închise — într-un flux continuu de spații care se deschid unele spre altele în jurul unui șemineu central masiv de cărămidă. Ferestrele în bandă cu sticlă artizanală în culori de chihlimbar și verde filtrează lumina naturală fără a oferi priviri directe în interior, asigurând intimitate fără închidere. Gardul de cărămidă integrat în arhitectura casei — o premieră — a generat conceptul de carport și a influențat proiectarea suburbanistică americană pentru decenii.',
 		images: {
-			hero: placeholder,
-			exterior: placeholder,
-			exterior2: placeholder,
-			interior: placeholder,
-			interior2: placeholder,
+			hero: '/buildings/robiehouse/hero.jpg',
+			exterior: '/buildings/robiehouse/exterior_1.jpg',
+			exterior2: '/buildings/robiehouse/exterior_2.jpg',
+			interior: '/buildings/robiehouse/interior_1.jpg',
+			interior2: '/buildings/robiehouse/interior_2.png',
 		}
 	},
 	{
